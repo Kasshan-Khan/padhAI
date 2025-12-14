@@ -1,0 +1,119 @@
+.loginsignup-container {
+    display: flex;
+    flex-direction: column;
+    margin: 60px auto;
+    width: 600px;
+    background-color: #66ef8a;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+/* Resetting potential global div styles from navbar.css if present */
+.loginsignup-container div {
+    background-color: transparent;
+    padding: 0;
+}
+
+.loginsignup-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 9px; */
+    width: 100%;
+    margin-top: 30px;
+}
+
+.loginsignup-text {
+    color: #333;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.loginsignup-underline {
+    width: 61px;
+    height: 6px;
+    background: #333;
+    border-radius: 9px;
+}
+
+.loginsignup-inputs {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.loginsignup-input {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 60px;
+    background: #eaeaea !important;
+    border-radius: 6px;
+    padding: 0 20px !important;
+}
+
+.loginsignup-input input {
+    height: 50px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 19px;
+}
+
+.loginsignup-input select {
+    height: 50px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.loginsignup-forgot-password span {
+    color: #333;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.loginsignup-submit-container {
+    display: flex;
+    margin: 30px auto;
+    justify-content: center;
+}
+
+.loginsignup-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: #fff;
+    background: #333 !important;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+.loginsignup-toggle {
+    text-align: center;
+    color: #5c5c5c;
+    font-size: 18px;
+    /* margin-bottom: 10px; */
+}
+
+.loginsignup-toggle span {
+    color: #333;
+    cursor: pointer;
+    font-weight: 600;
+}

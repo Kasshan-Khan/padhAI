@@ -1,0 +1,121 @@
+.shortnotes-container, .download-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.shortnotes-container h1, .download-page h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.shortnotes-container p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 40px;
+    border-radius: 10px;
+    background: white;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.action-btn, .download-page button {
+    padding: 15px 30px;
+    background-color: #66ef8a;
+    color: #333;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.action-btn:hover, .download-page button:hover {
+    transform: scale(1.05);
+    background-color: #5cd67c;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #66ef8a;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.download-page pre {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+    max-width: 800px;
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+}
+
+.options-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.option-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+}
+
+.option-card h3 {
+    margin: 0;
+    color: #333;
+}
+
+.video-input-field {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.video-input-field:focus {
+    border-color: #66ef8a;
+}
