@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
-import bankuLogo from "./assets/banku_logo.jpg";
+import bankuLogo from "./assets/banku_logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -41,15 +41,17 @@ const Login = () => {
 
   return (
     <>
-      <div className="loginsignup-outer-container">
-        <div className = "banku">
-          <img src={bankuLogo} alt="banku" border="0" className='bankuLogo'/>
+      <div className="loginsignup-outer-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', padding: '20px' }}>
+        <div className="banku" style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+          <div className="text_ab_ab_sngup" style={{ marginBottom: '20px' }}>Login</div>
+          <img src={bankuLogo} alt="banku" border="0" className='bankuLogo' style={{ maxWidth: '300px', height: 'auto' }}/>
         </div>
-        <div className = "banku">
-          <div className="loginsignup-container">
+        <div className="banku" style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'center' }}>
+          <div className="loginsignup-container" style={{ width: '100%', maxWidth: '400px' }}>
             <div className="loginsignup-header">
-              <div className="text_ab_ab_sngup">Login</div>
-              <div className="text_ab_sngup">Let's get started!</div>
+              <div className="loginsignup-text">  
+              </div>
+              <div className="loginsignup-underline"></div>
             </div>
 
             <form onSubmit={handleSubmit}>

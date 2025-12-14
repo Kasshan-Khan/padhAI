@@ -5,7 +5,7 @@ a{
 }
 
 .navbar {
-    background-color: #11863c;
+    /* background-color: #11863c; */
     padding: 10px;
 }
 
@@ -24,7 +24,7 @@ li {
 }
 
 li div {
-    color: white;
+    color: black;
     padding: 10px;
     cursor: pointer;
 }
@@ -60,4 +60,10 @@ li div {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+}
+
+.navbar-logo-img {
+  height: 50px;
+  transform: scale(1.6);
+  margin-left: 25px;
 }

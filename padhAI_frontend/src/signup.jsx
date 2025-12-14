@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginSignup.css';
-import bankuLogo from './assets/banku_logo.jpg';
+import bankuLogo from './assets/banku_logo.png';
+import padhAI_logo from './assets/padhAI_logo.png';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -45,16 +46,18 @@ const Signup = () => {
   };
 
   return (
-    <div className="loginsignup-outer-container">
-      <div className = "banku">
-        <img src={bankuLogo} alt="banku" border="0" className='bankuLogo'/>
+    <div className="loginsignup-outer-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', padding: '20px' }}>
+      <div className="banku" style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+        <div className='logo-abc' style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+          <p className="text_ab_ab_sngup">Welcome to</p>
+          <img id = "abc1" src={padhAI_logo} alt="padhAI" style={{ width: '80px', marginLeft: '15px' }}/>
+        </div>
+        <img src={bankuLogo} alt="banku" border="0" className='bankuLogo' style={{ maxWidth: '300px', height: 'auto' }}/>
       </div>
-      <div className = "banku">
-        <div className='loginsignup-container'>
+      <div className="banku" style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'center' }}>
+        <div className='loginsignup-container' style={{ width: '100%', maxWidth: '400px' }}>
           <div className="loginsignup-header">
             <div className="loginsignup-text">  
-              <p    className = "text_ab_ab_sngup">Welcome to padhAI</p>
-              <p className = "text_ab_sngup">Let's get started</p>
             </div>
             <div className="loginsignup-underline"></div>
           </div>
