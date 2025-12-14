@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"]
     },
-    goal: {
+    domain: {
       type: String,
-      enum: ["JEE", "NEET"],
+      enum: ["JEE", "NEET","ENGINEERING"],
       required: true
     }
   },
