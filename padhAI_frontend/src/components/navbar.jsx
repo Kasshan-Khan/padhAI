@@ -14,7 +14,7 @@ function Navbar() {
     return (
         <div className="navbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div className="navbar-logo">
-                <img src={padhAI_logo} alt="PadhAI Logo" style={{ height: '50px' , transform: 'scale(2.0)' }} />
+                <img src={padhAI_logo} alt="PadhAI Logo" style={{ height: '50px' }} />
             </div>
             <ul>
                 {/* HOME (always visible) */}
