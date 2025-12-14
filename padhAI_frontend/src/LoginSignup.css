@@ -1,7 +1,7 @@
 .loginsignup-container {
     display: flex;
     flex-direction: column;
-    margin: 60px auto;
+    margin: 0;
     width: 600px;
     /* background-color: #66ef8a; */
     padding-bottom: 30px;
@@ -101,21 +101,19 @@
 }
 
 .bankuLogo{
-    width: 100px;
+    width: 350px;
     height: auto;
     display: block;
-    margin-left: 300px;
-    margin-right: 350px;
-    position: relative;
-    transform: scale(3) translateY(-10px);
 }
 
 .loginsignup-outer-container{
     display: flex;
     flex-direction: row;
     /* padding: 20px; */
-    align-items: center;
-    transform: translateY(-40px);
+    align-items: flex-start;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 60px;
 }
 
 .text_ab_ab_sngup{
@@ -220,4 +218,3 @@
     margin-top: 10px;
   }
 }
-    

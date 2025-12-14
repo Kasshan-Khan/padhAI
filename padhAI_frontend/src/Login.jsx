@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
+import bankuLogo from "./assets/banku_logo.jpg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,47 +40,57 @@ const Login = () => {
   };
 
   return (
-    <div className="loginsignup-container">
-      <div className="loginsignup-header">
-        <div className="loginsignup-text">Login</div>
-        <div className="loginsignup-underline"></div>
-      </div>
+    <>
+      <div className="loginsignup-outer-container">
+        <div className = "banku">
+          <img src={bankuLogo} alt="banku" border="0" className='bankuLogo'/>
+        </div>
+        <div className = "banku">
+          <div className="loginsignup-container">
+            <div className="loginsignup-header">
+              <div className="text_ab_ab_sngup">Login</div>
+              <div className="text_ab_sngup">Let's get started!</div>
+            </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="loginsignup-inputs">
-          <div className="loginsignup-input">
-            <input
-              type="email"
-              placeholder="Email Id"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+            <form onSubmit={handleSubmit}>
+              <div className="loginsignup-inputs">
+                <div className="loginsignup-input">
+                  <input
+                    type="email"
+                    placeholder="Email Id"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
 
-          <div className="loginsignup-input">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+                <div className="loginsignup-input">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="loginsignup-submit-container">
+                <button type="submit" className="loginsignup-submit">
+                  Login
+                </button>
+              </div>
+            </form>
+
+            <div className="loginsignup-toggle">
+              <p>
+                Don’t have an account?
+                <Link to="/signup"><span> Sign Up here</span></Link>
+              </p>
+            </div>
           </div>
         </div>
-
-        <div className="loginsignup-submit-container">
-          <button type="submit" className="loginsignup-submit">
-            Login
-          </button>
-        </div>
-      </form>
-
-      <div className="loginsignup-toggle">
-        <p>
-          Don’t have an account?
-          <Link to="/signup"><span> Sign Up here</span></Link>
-        </p>
       </div>
-    </div>
+    </>
+    
   );
 };
 
