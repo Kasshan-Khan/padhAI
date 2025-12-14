@@ -46,16 +46,16 @@ const Signup = () => {
   };
 
   return (
-    <div className="loginsignup-outer-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', padding: '20px' }}>
-      <div className="banku" style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
-        <div className='logo-abc' style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+    <div className="loginsignup-outer-container-signup-container">
+      <div className="banku banku-logo">
+        <div className='logo-abc'>
           <p className="text_ab_ab_sngup">Welcome to</p>
-          <img id = "abc1" src={padhAI_logo} alt="padhAI" style={{ width: '80px', marginLeft: '15px' }}/>
+          <img id = "abc1" src={padhAI_logo} alt="padhAI"/>
         </div>
-        <img src={bankuLogo} alt="banku" border="0" className='bankuLogo' style={{ maxWidth: '300px', height: 'auto' }}/>
+        <img src={bankuLogo} alt="banku" border="0" className='bankuLogo'/>
       </div>
-      <div className="banku" style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'center' }}>
-        <div className='loginsignup-container' style={{ width: '100%', maxWidth: '400px' }}>
+      <div className="banku banku-form">
+        <div className='loginsignup-container'>
           <div className="loginsignup-header">
             <div className="loginsignup-text">  
             </div>

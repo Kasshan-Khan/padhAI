@@ -6,6 +6,21 @@
   font-style: normal;
 }
 
+.loginsignup-outer-container-signup-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #83ac92;
+    border-radius: 15px;
+    margin: 20px;
+    height: 80vh;
+}
+
 .loginsignup-container {
     display: flex;
     flex-direction: column;
@@ -117,30 +132,25 @@
 .banku{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     margin-right: 50px;
+    /* flex: 1 1 300px; */
+}
+
+.banku-logo{
+    margin-bottom: 220px;
+}
+
+.banku-form{
+    flex-direction: row;
+    justify-content: center;
 }
 
 .bankuLogo{
-    width: 100%;
-    max-width: 250px;
-    height: auto;
+    width: auto;
+    height: 300px;
     display: block;
-}
-
-.loginsignup-outer-container{
-    display: flex;
-    flex-direction: row;
-    /* padding: 20px; */
-    align-items: flex-start;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 60px;
-    padding: 20px;
-    background-color: #83ac92;
-    border-radius: 15px;
-    margin: 20px;
 }
 
 .text_ab_ab_sngup{
@@ -148,15 +158,19 @@
     font-size: 52px;
     font-weight: 400;
     color: #333333;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
 @media (max-width: 1024px) {
-  .loginsignup-outer-container {
+  .loginsignup-outer-container-signup-container {
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
     gap: 30px;
+  }
+
+  .banku-logo {
+    margin-bottom: 20px;
   }
 
   .bankuLogo {
@@ -209,9 +223,22 @@
   }
 }
 
-#abc1 {
-    transform: translateY(32px);
-    height: auto;
-    min-width: 200px;
+.logo-abc {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 15px;
 }
 
+.signup-container {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+#abc1 {
+    height: auto;
+    width: 200px;
+    transform: translateY(7px);
+}

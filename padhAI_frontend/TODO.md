@@ -1,7 +1,3 @@
-# TODO: Fix Navbar
-
-- [x] Rename component function from 'navbar' to 'Navbar' in navbar.jsx
-- [x] Fix CSS hover selector for dropdown in navbar.css
-- [x] Add basic horizontal navbar styling in navbar.css
-- [x] Align navbar contents to the right in navbar.css
-- [x] Add demo dropdown content in navbar.jsx
+- [x] Update LoginSignup.css to incorporate all inline styles from Login.jsx and signup.jsx
+- [x] Remove all inline style attributes from Login.jsx and add 'banku-form' class to the form-side .banku div
+- [x] Remove all inline style attributes from signup.jsx and add 'banku-form' class to the form-side .banku div
