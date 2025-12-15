@@ -200,6 +200,7 @@
 }
 
 .slideshow img {
+  border: 5px solid rgb(241, 173, 48);
   height: 60vh;
   width: 100%;
   object-fit: cover;
