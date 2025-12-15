@@ -41,11 +41,8 @@ function Navbar() {
                         </li>
 
                         <li>
-                            <div className="dropdown">
-                                <p className="dropdown-init">AI Tools</p>
-                                <div className="dropdown-content">
-                                    <Link to="/short-notes">Short Notes Generator</Link>
-                                </div>
+                            <div>
+                                    <Link className="dropdown-init" to="/Ai">AI Tools</Link>
                             </div>
                         </li>
                     </>
