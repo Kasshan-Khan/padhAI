@@ -34,12 +34,8 @@ function Navbar() {
                 {token && (
                     <>
                         <li>
-                            <div className="dropdown">
-                                <p className="dropdown-init">My Space</p>
-                                <div className="dropdown-content">
-                                
-                                    <Link to="/jee">JEE</Link>
-                                </div>
+                            <div>
+                                <Link className="dropdown-init" to="/jee">My Space</Link>
                             </div>
                         </li>
 
