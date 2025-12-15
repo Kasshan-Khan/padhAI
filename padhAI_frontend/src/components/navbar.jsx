@@ -24,15 +24,16 @@ function Navbar() {
                     </div>
                 </li>
                 
-                <li>
-                    <div>
-                        <Link className="dropdown-init" to="/todo">My Tasks</Link>
-                    </div>
-                </li>
+                
 
                 {/* SHOW ONLY IF LOGGED IN */}
                 {token && (
                     <>
+                        <li>    
+                            <div>
+                                <Link className="dropdown-init" to="/todo">My Tasks</Link>
+                            </div>
+                        </li>
                         <li>
                             <div>
                                 <Link className="dropdown-init" to="/jee">My Space</Link>
