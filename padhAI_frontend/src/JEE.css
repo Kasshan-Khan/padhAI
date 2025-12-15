@@ -61,12 +61,13 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    /* background-color: #83ac92; */
 }
 
 .channel-img {
     width: 150px;
     height: 150px;
-    background-color: #ddd;
+    /* background-color: #ddd; */
     border-radius: 50%;
     display: flex;
     align-items: center;
