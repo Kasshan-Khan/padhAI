@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ToDoList.css';
 
 const ToDoList = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: "Complete Physics Chapter 1", completed: false },
-    { id: 2, text: "Revise Calculus formulas", completed: true }
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [
+      { id: 1, text: "Complete Physics Chapter 1", completed: false },
+      { id: 2, text: "Revise Calculus formulas", completed: true }
+    ];
+  });
   const [newTask, setNewTask] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (e) => {
     e.preventDefault();

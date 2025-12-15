@@ -35,7 +35,7 @@ function Navbar() {
                     <>
                         <li>
                             <div className="dropdown">
-                                <p className="dropdown-init">Personalized Learning</p>
+                                <p className="dropdown-init">My Space</p>
                                 <div className="dropdown-content">
                                 
                                     <Link to="/jee">JEE</Link>
