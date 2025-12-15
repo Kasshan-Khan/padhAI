@@ -46,7 +46,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="loginsignup-outer-container-signup-container">
+    <div className='mainContainer'>
+      <div className="loginsignup-outer-container-signup-container">
       <div className="banku banku-logo">
         <div className='logo-abc'>
           <p className="text_ab_ab_sngup">Welcome to</p>
@@ -122,6 +123,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
