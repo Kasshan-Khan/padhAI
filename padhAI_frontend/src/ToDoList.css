@@ -1,8 +1,10 @@
+@import url('https://fonts.cdnfonts.com/css/norwester');
+
 .todo-container {
   max-width: 600px;
   margin: 40px auto;
   padding: 30px;
-  background: #ffffff;
+  background-color: #83ac92;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   font-family: 'Poppins', sans-serif;
@@ -36,7 +38,7 @@
 
 .todo-add-btn {
   padding: 12px 25px;
-  background-color: #11863c;
+  background-color: #10612D;
   color: white;
   border: none;
   border-radius: 8px;
@@ -99,4 +101,9 @@
 
 .todo-delete-btn:hover {
   transform: scale(1.1);
+}
+
+.todo-container h2{
+    font-family: 'Norwester', sans-serif;
+    font-size: 2rem;
 }
