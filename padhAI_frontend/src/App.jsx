@@ -11,6 +11,7 @@ import Upload from './Upload'
 import VideoInput from './VideoInput'
 import Loading from './Loading'
 import DownloadNotes from './Download'
+import ToDoList from './ToDoList'
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/video-input" element={<VideoInput />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/download" element={<DownloadNotes />} />
+        <Route path="/todo" element={<ToDoList />} />
       </Routes>
     </BrowserRouter>
   )

@@ -23,6 +23,12 @@ function Navbar() {
                         <Link className="dropdown-init" to="/">Home</Link>
                     </div>
                 </li>
+                
+                <li>
+                    <div>
+                        <Link className="dropdown-init" to="/todo">My Tasks</Link>
+                    </div>
+                </li>
 
                 {/* SHOW ONLY IF LOGGED IN */}
                 {token && (
@@ -31,7 +37,7 @@ function Navbar() {
                             <div className="dropdown">
                                 <p className="dropdown-init">Personalized Learning</p>
                                 <div className="dropdown-content">
-                                    <a href="#">Progress Tracking</a>
+                                
                                     <Link to="/jee">JEE</Link>
                                 </div>
                             </div>

@@ -29,6 +29,12 @@ const Home = () => {
       description: "Test your knowledge with AI-generated quizzes.",
       link: "/jee",
       color: "#96CEB4"
+    },
+    {
+      title: "Task Manager",
+      description: "Keep track of your study goals and daily tasks.",
+      link: "/todo",
+      color: "#FF9F43"
     }
   ];
 
