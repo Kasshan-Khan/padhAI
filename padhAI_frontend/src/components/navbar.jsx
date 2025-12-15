@@ -63,7 +63,7 @@ function Navbar() {
                                 <Link
                                     to="/login"
                                     className="dropdown-init"
-                                    style={{ textDecoration: "none", color: "inherit" }}
+                                    style={{ textDecoration: "none" }}
                                 >
                                     Login
                                 </Link>
