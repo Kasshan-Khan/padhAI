@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import './App.css'
 import Navbar from './components/navbar'
 
@@ -14,7 +15,52 @@ import DownloadNotes from './Download'
 
 import ProtectedRoute from "./ProtectedRoute";
 
+
+function ChatbaseWidget() {
+  useEffect(() => {
+    // Prevent loading the script multiple times
+    if (window.chatbase) return;
+
+    (function () {
+      if (
+        !window.chatbase ||
+        window.chatbase("getState") !== "initialized"
+      ) {
+        window.chatbase = (...args) => {
+          if (!window.chatbase.q) {
+            window.chatbase.q = [];
+          }
+          window.chatbase.q.push(arguments);
+        };
+
+        window.chatbase = new Proxy(window.chatbase, {
+          get(target, prop) {
+            if (prop === "q") {
+              return target.q;
+            }
+            return (...args) => target(prop, ...args);
+          },
+        });
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://www.chatbase.co/embed.min.js";
+      script.id = "GVHrx645hCATwg4qksPA4";
+      script.setAttribute("domain", "www.chatbase.co");
+      script.async = true;
+
+      document.body.appendChild(script);
+    })();
+  }, []);
+
+  return null; // widget mounts itself
+}
+
+
+
 function App() {
+  
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -35,6 +81,7 @@ function App() {
         <Route path="/loading" element={<Loading />} />
         <Route path="/download" element={<DownloadNotes />} />
       </Routes>
+      <ChatbaseWidget />
     </BrowserRouter>
   )
 }

@@ -99,9 +99,7 @@ const Signup = () => {
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
                 >
-                  <option value="" disabled>Select Goal</option>
-                  <option value="JEE">JEE</option>
-                  <option value="NEET">NEET</option>
+                  <option value="" disabled>Domain</option>
                   <option value="ENGG.">Engineering</option>
                 </select>
               </div>

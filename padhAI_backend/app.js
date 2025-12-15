@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 // DB
 const PORT = process.env.PORT || 5000;
 
-// Start server without database for testing
+// Start server (without database for now - using in-memory storage)
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

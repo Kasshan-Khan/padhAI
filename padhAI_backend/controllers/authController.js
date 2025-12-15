@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user.js");
+
+// Temporary in-memory storage for testing (when DB is not available)
+let users = [];
 
 // SIGNUP
 exports.signup = async (req, res) => {
@@ -11,19 +13,24 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ msg: "All fields are required" });
     }
 
-    const existingUser = await User.findOne({ email });
+    // Check if user already exists in memory
+    const existingUser = users.find(user => user.email === email);
     if (existingUser) {
       return res.status(400).json({ msg: "User already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.create({
+    // Create user in memory
+    const newUser = {
+      id: Date.now().toString(),
       name,
       email,
       password: hashedPassword,
-      goal
-    });
+      domain: goal
+    };
+
+    users.push(newUser);
 
     return res.status(201).json({ msg: "Signup successful" });
 
@@ -42,7 +49,8 @@ exports.login = async (req, res) => {
       return res.status(400).json({ msg: "All fields are required" });
     }
 
-    const user = await User.findOne({ email });
+    // Find user in memory
+    const user = users.find(user => user.email === email);
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
@@ -53,18 +61,18 @@ exports.login = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
+      { id: user.id },
+      process.env.JWT_SECRET || "fallback_secret",
       { expiresIn: "1d" }
     );
 
     return res.json({
       token,
       user: {
-        id: user._id,
+        id: user.id,
         name: user.name,
         email: user.email,
-        goal: user.goal
+        goal: user.domain
       }
     });
 
