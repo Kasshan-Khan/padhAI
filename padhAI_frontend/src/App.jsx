@@ -14,6 +14,10 @@ import Loading from './Loading'
 import DownloadNotes from './Download'
 
 import ProtectedRoute from "./ProtectedRoute";
+import ToDoList from './ToDoList';
+import Lectures from './lectures';
+import Teachers from './teachers';
+import Questions from './questions';
 
 
 function ChatbaseWidget() {
@@ -74,12 +78,19 @@ function App() {
         <Route path="/signup" element={<Signup />} />
 
         {/* APP FEATURES */}
-        <Route path="/jee" element={<ProtectedRoute><JEE /></ProtectedRoute>} />
+        <Route path="/jee" element={<ProtectedRoute><JEE /></ProtectedRoute>}>
+          <Route index element={<Lectures />} />
+          <Route path="lectures" element={< Lectures />} />
+          <Route path="teachers" element={<Teachers />} />
+          <Route path="questions" element={<Questions />} />
+        </Route>
+
         <Route path="/short-notes" element={<ShortNotes />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/video-input" element={<VideoInput />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/download" element={<DownloadNotes />} />
+        <Route path="/todo" element={<ToDoList />} />
       </Routes>
       <ChatbaseWidget />
     </BrowserRouter>

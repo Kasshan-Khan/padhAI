@@ -1,0 +1,110 @@
+@import url('https://fonts.cdnfonts.com/css/norwester');
+
+.todo-container {
+  max-width: 600px;
+  margin: 40px auto;
+  margin-top: 90px;
+  padding: 30px;
+  background-color: #83ac92;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  font-family: 'Poppins', sans-serif;
+}
+
+.todo-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.todo-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.todo-input-group input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.todo-input-group input:focus {
+  border-color: #4ECDC4;
+  outline: none;
+}
+
+.todo-add-btn {
+  padding: 12px 25px;
+  background-color: #10612D;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.todo-add-btn:hover {
+  background-color: hsl(142, 77%, 25%);
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+}
+
+.todo-item.completed {
+  background: #f0f0f0;
+  opacity: 0.7;
+}
+
+.todo-text {
+  flex: 1;
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.todo-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+  margin-left: 10px;
+  transition: transform 0.2s;
+}
+
+.todo-delete-btn:hover {
+  transform: scale(1.1);
+}
+
+.todo-container h2{
+    font-family: 'Norwester', sans-serif;
+    font-size: 2rem;
+}

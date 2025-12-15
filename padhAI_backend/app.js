@@ -32,7 +32,7 @@ app.listen(PORT, () => {
 });
 
 // Uncomment below when database is configured
-/*
+
 connectDB()
 .then(() => {
     app.listen(PORT, () => {
@@ -42,4 +42,4 @@ connectDB()
 .catch((err) => {
     console.error("Database connection failed", err);
 });
-*/
+
