@@ -85,18 +85,11 @@ function App() {
         {/* APP FEATURES */}
         <Route path="/jee" element={<ProtectedRoute><JEE /></ProtectedRoute>}>
           <Route index element={<Lectures />} />
-<<<<<<< HEAD
-          <Route path="lectures" element={<Lectures />} />
-          <Route path="teachers" element={<Teachers />} />
-          <Route path="questions" element={<Questions />} />
-        </Route>
-=======
           <Route path="lectures" element={< Lectures />} />
           <Route path="teachers" element={<Teachers />} />
           <Route path="questions" element={<Questions />} />
         </Route>
 
->>>>>>> 4ff3205a2576207691e59a6c817992eeac9e4bca
         <Route path="/short-notes" element={<ShortNotes />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/video-input" element={<VideoInput />} />
