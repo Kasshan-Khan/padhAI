@@ -12,11 +12,6 @@ import Upload from './Upload'
 import VideoInput from './VideoInput'
 import Loading from './Loading'
 import DownloadNotes from './Download'
-import ToDoList from './ToDoList'
-
-import Lectures from './lectures'
-import Teachers from './teachers'
-import Questions from './questions'
 
 import ProtectedRoute from "./ProtectedRoute";
 import ToDoList from './ToDoList';
