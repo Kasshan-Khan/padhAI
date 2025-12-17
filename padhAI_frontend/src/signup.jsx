@@ -99,7 +99,13 @@ const Signup = () => {
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
                 >
+<<<<<<< HEAD
+                  <option value="" disabled>Select Goal</option>
+                  {/* <option value="JEE">JEE</option>
+                  <option value="NEET">NEET</option> */}
+=======
                   <option value="" disabled>Domain</option>
+>>>>>>> 4ff3205a2576207691e59a6c817992eeac9e4bca
                   <option value="ENGG.">Engineering</option>
                 </select>
               </div>

@@ -10,6 +10,44 @@ import image5 from './assets/images/image5.jpg';
 import image6 from './assets/images/image6.jpg';
 
 const Home = () => {
+<<<<<<< HEAD
+  const token = localStorage.getItem("token");
+
+  const features = [
+    {
+      title: "JEE Prep",
+      description: "Comprehensive study materials and roadmaps for JEE aspirants.",
+      link: "/jee",
+      color: "#FF6B6B"
+    },
+    {
+      title: "Short Notes",
+      description: "Generate concise summaries from your documents instantly.",
+      link: "/short-notes",
+      color: "#4ECDC4"
+    },
+    {
+      title: "Video Summarizer",
+      description: "Turn long YouTube lectures into quick readable notes.",
+      link: "/video-input",
+      color: "#45B7D1"
+    },
+    {
+      title: "Quiz Generator",
+      description: "Test your knowledge with AI-generated quizzes.",
+      link: "/jee",
+      color: "#96CEB4"
+    },
+    {
+      title: "Task Manager",
+      description: "Keep track of your study goals and daily tasks.",
+      link: "/todo",
+      color: "#FF9F43"
+    }
+  ];
+
+=======
+>>>>>>> 4ff3205a2576207691e59a6c817992eeac9e4bca
   return (
     <div>
       <Navbar />
