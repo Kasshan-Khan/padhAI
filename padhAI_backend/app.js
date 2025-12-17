@@ -31,8 +31,6 @@ app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 
-// Uncomment below when database is configured
-
 connectDB()
 .then(() => {
     app.listen(PORT, () => {
