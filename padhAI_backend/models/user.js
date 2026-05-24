@@ -4,22 +4,38 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Name is required"]
+      required: true
     },
+
     email: {
       type: String,
-      required: [true, "Email is required"],
+      required: true,
       unique: true
     },
+
+    profilePic: {
+      type: String,
+      default: ""
+    },
+
+    authProvider: {
+      type: String,
+      enum: ["google", "local"],
+      default: "local",
+    },
+
     password: {
       type: String,
-      required: [true, "Password is required"]
+      required: function () {
+        return this.authProvider === "local";
+      }
     },
+
     domain: {
       type: String,
-      enum: ["JEE", "NEET","ENGINEERING"],
-      required: true
-    }
+      enum: ["JEE", "NEET", "ENGINEERING"],
+      default: null
+    },
   },
   { timestamps: true }
 );

@@ -1,6 +1,14 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.js");
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+const generateToken = (userId) => {
+  return jwt.sign({ _id: userId }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1d",
+  });
+};
 
 // SIGNUP
 exports.signup = async (req, res) => {
@@ -18,18 +26,19 @@ exports.signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.create({
+    const user = await User.create({
       name,
       email,
       password: hashedPassword,
-      goal
+      domain: goal || null,
+      authProvider: "local"
     });
 
-    return res.status(201).json({ msg: "Signup successful" });
+    res.status(201).json({ msg: "Signup successful" });
 
   } catch (err) {
-    console.error("Signup error:", err);
-    return res.status(500).json({ msg: "Server error" });
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
   }
 };
 
@@ -43,7 +52,7 @@ exports.login = async (req, res) => {
     }
 
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || user.authProvider !== "local") {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
 
@@ -52,24 +61,98 @@ exports.login = async (req, res) => {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
 
-    const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
+    const token = generateToken(user._id);
 
-    return res.json({
+    res.json({
       token,
       user: {
         id: user._id,
         name: user.name,
         email: user.email,
-        goal: user.goal
+        goal: user.domain,
+        picture: user.profilePic
       }
     });
 
   } catch (err) {
-    console.error("Login error:", err);
-    return res.status(500).json({ msg: "Server error" });
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
   }
 };
+
+// GOOGLE AUTH
+exports.googleAuth = async (req, res) => {
+  try {
+    const { token } = req.body;
+
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const { name, email, picture } = ticket.getPayload();
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = await User.create({
+        name,
+        email,
+        profilePic: picture,
+        authProvider: "google",
+        domain: null
+      });
+    }
+
+    const appToken = generateToken(user._id);
+
+    res.json({
+      token: appToken,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        goal: user.domain,
+        picture: user.profilePic
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(401).json({ error: "Google Auth Failed" });
+  }
+};
+
+// UPDATE DOMAIN
+exports.updateDomain = async (req, res) => {
+  try {
+    const { domain } = req.body;
+    const allowedDomains = ["JEE", "NEET", "ENGINEERING"];
+
+    if (!allowedDomains.includes(domain)) {
+      return res.status(400).json({ msg: "Invalid domain selection" });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { domain },
+      { new: true }
+    );
+
+    res.json({
+      msg: "Domain updated",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        goal: user.domain,
+        picture: user.profilePic
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+

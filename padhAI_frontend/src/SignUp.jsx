@@ -16,7 +16,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -99,9 +99,7 @@ const Signup = () => {
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
                 >
-                  <option value="" disabled>Select Goal</option>
-                  {/* <option value="JEE">JEE</option>
-                  <option value="NEET">NEET</option> */}
+                  <option value="" disabled>Domain</option>
                   <option value="ENGG.">Engineering</option>
                 </select>
               </div>

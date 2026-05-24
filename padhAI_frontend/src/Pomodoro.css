@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Poppins:wght@300;400;500;600&display=swap');
+
+.pomodoro-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 80px auto 0;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background-color: #fcefe7;
+    /* Theme consistency */
+}
+
+.pomodoro-title {
+    font-family: 'Leckerli One', cursive;
+    font-size: 3rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.pomodoro-layout {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+/* Input Styles */
+.input-section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 500px;
+    height: fit-content;
+    transition: all 0.5s ease;
+}
+
+.layout-generated .input-section {
+    max-width: 350px;
+    position: sticky;
+    top: 100px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.pomodoro-input,
+.pomodoro-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.pomodoro-input:focus,
+.pomodoro-textarea:focus {
+    border-color: #10612d;
+    outline: none;
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 15px;
+    background: #e53935;
+    /* Pomodoro Red */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+    transition: transform 0.2s;
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    background: #d32f2f;
+}
+
+.generate-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Schedule Display */
+.schedule-display {
+    flex: 1;
+    max-width: 700px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.plan-summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card span {
+    display: block;
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.summary-card h3 {
+    margin: 0;
+    color: #e53935;
+    font-size: 1.8rem;
+}
+
+/* Timeline */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px dashed #ddd;
+}
+
+.time-marker {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.session-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.session-card.focus {
+    border-left: 5px solid #e53935;
+}
+
+.session-card.break {
+    border-left: 5px solid #43a047;
+    background: #f1f8e9;
+    margin-top: 10px;
+}
+
+.session-card h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.focus-tag {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.break-tag {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Timer Styles */
+.timer-section {
+    margin-bottom: 30px;
+}
+
+.timer-display {
+    background: #212121;
+    /* Dark mode contrasting card */
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.timer-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #e53935, #ffeb3b, #43a047);
+}
+
+.timer-display h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.time-large {
+    font-size: 5rem;
+    font-weight: 700;
+    font-family: monospace;
+    margin: 10px 0;
+    letter-spacing: -2px;
+}
+
+.current-task-label {
+    font-size: 1.1rem;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.timer-btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.timer-btn.start {
+    background: #43a047;
+    color: white;
+    box-shadow: 0 4px 15px rgba(67, 160, 71, 0.4);
+}
+
+.timer-btn.pause {
+    background: #fb8c00;
+    color: white;
+    box-shadow: 0 4px 15px rgba(251, 140, 0, 0.4);
+}
+
+.timer-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Timeline Active States */
+.active-item .time-marker {
+    color: #e53935;
+    font-size: 1rem;
+}
+
+.session-card.active-card {
+    border-left-width: 8px;
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.completed-item {
+    opacity: 0.6;
+    filter: grayscale(0.5);
+}
+
+.session-card {
+    transition: all 0.3s ease;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+@media (max-width: 900px) {
+    .pomodoro-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .layout-generated .input-section {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+    }
+}

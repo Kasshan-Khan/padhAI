@@ -2,6 +2,7 @@ import streamlit as st
 from dotenv import load_dotenv
 import re
 from urllib.parse import urlparse, parse_qs
+import requests
 
 load_dotenv() ##load all the nevironment variables
 import os
@@ -83,14 +84,29 @@ if st.button("Get Detailed Notes"):
     else:
         with st.spinner("Extracting transcript and generating summary..."):
             try:
-                transcript_text=extract_transcript_details(youtube_link)
-
-                if transcript_text:
-                    summary=generate_gemini_content(transcript_text,prompt)
-                    st.markdown("## Detailed Notes:")
-                    st.write(summary)
+                # Call Node.js backend API
+                response = requests.post(
+                    "http://localhost:5000/api/transcript/summary",
+                    json={"youtube_url": youtube_link},
+                    headers={"Content-Type": "application/json"}
+                )
+                
+                if response.status_code == 200:
+                    result = response.json()
+                    if result.get("success"):
+                        st.markdown("## Detailed Notes:")
+                        st.write(result.get("summary"))
+                        st.info(f"Transcript length: {result.get('transcript_length', 0)} characters")
+                    else:
+                        st.error(result.get("error", "Unknown error occurred"))
                 else:
-                    st.error("No transcript available for this video")
+                    error_data = response.json() if response.headers.get('content-type') == 'application/json' else {}
+                    st.error(f"Error {response.status_code}: {error_data.get('error', 'Failed to process request')}")
+                    
+            except requests.exceptions.ConnectionError:
+                st.error("Cannot connect to backend server. Please ensure the Node.js server is running on localhost:5000")
+            except requests.exceptions.Timeout:
+                st.error("Request timed out. Please try again.")
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
 

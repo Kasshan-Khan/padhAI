@@ -3,3 +3,7 @@ streamlit
 google-generativeai
 python-dotenv
 pathlib
+flask
+flask-cors
+requests
+gunicorn

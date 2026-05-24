@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
 import bankuLogo from "./assets/banku_logo.png";
 import padhAI_logo from './assets/padhAI_logo.png';
+import GoogleLoginButton from "./components/GoogleLoginButton";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +16,10 @@ const Login = () => {
     e.preventDefault(); // stop page reload
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      // Sanitize API URL: Remove trailing slash if present
+      const API_URL = import.meta.env.VITE_API_URL.replace(/\/$/, "");
+
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -44,61 +49,63 @@ const Login = () => {
     <>
       <div className="mainContainer">
         <div className="loginsignup-outer-container-signup-container">
-        <div className="banku banku-logo">
-          <div className='logo-abc'>
-            <p className="text_ab_ab_sngup">Welcome to</p>
-            <img id = "abc1" src={padhAI_logo} alt="padhAI"/>
-          </div>
-          <img src={bankuLogo} alt="banku" border="0" className='bankuLogo'/>
-        </div>
-        <div className="banku banku-form">
-          <div className="loginsignup-container">
-            <div className="loginsignup-header">
-              <div className="loginsignup-text">  
-              </div>
-              <div className="loginsignup-underline"></div>
+          <div className="banku banku-logo">
+            <div className='logo-abc'>
+              <p className="text_ab_ab_sngup">Welcome to</p>
+              <img id="abc1" src={padhAI_logo} alt="padhAI" />
             </div>
+            <img src={bankuLogo} alt="banku" border="0" className='bankuLogo' />
+          </div>
+          <div className="banku banku-form">
+            <div className="loginsignup-container">
+              <div className="loginsignup-header">
+                <div className="loginsignup-text">
+                </div>
+                <div className="loginsignup-underline"></div>
+              </div>
 
-            <form onSubmit={handleSubmit}>
-              <div className="loginsignup-inputs">
-                <div className="loginsignup-input">
-                  <input
-                    type="email"
-                    placeholder="Email Id"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+              <form onSubmit={handleSubmit}>
+                <div className="loginsignup-inputs">
+                  <div className="loginsignup-input">
+                    <input
+                      type="email"
+                      placeholder="Email Id"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="loginsignup-input">
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
                 </div>
 
-                <div className="loginsignup-input">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                <div className="loginsignup-submit-container">
+                  <button type="submit" className="loginsignup-submit">
+                    Login
+                  </button>
                 </div>
+              </form>
+
+              <div className="loginsignup-toggle">
+                <p>
+                  Don’t have an account?
+                  <Link to="/signup"><span> Sign Up here</span></Link>
+                </p>
               </div>
 
-              <div className="loginsignup-submit-container">
-                <button type="submit" className="loginsignup-submit">
-                  Login
-                </button>
-              </div>
-            </form>
-
-            <div className="loginsignup-toggle">
-              <p>
-                Don’t have an account?
-                <Link to="/signup"><span> Sign Up here</span></Link>
-              </p>
+              <GoogleLoginButton />
             </div>
           </div>
         </div>
-      </div>
       </div>
     </>
-    
+
   );
 };
 
