@@ -31,8 +31,8 @@ const DomainSelection = () => {
             const data = await response.json();
 
             if (response.ok) {
-                // Update local storage if user details are verified there, but token is enough
-                navigate("/jee");
+                localStorage.setItem("userDomain", domain);
+                navigate("/space");
             } else {
                 alert(data.msg || "Failed to update domain");
             }

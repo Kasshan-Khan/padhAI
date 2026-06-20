@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
-const JEE = () => {
+const Space = () => {
   const location = useLocation();
+  const [domain, setDomain] = useState("My");
+
+  useEffect(() => {
+    const userDomain = localStorage.getItem("userDomain");
+    if (userDomain) {
+      // Capitalize first letter and lowercase the rest for better aesthetics
+      const formattedDomain = userDomain.charAt(0).toUpperCase() + userDomain.slice(1).toLowerCase();
+      setDomain(formattedDomain);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-base-100 flex flex-col items-center pt-24 pb-12 px-4 relative overflow-hidden transition-colors duration-500">
@@ -14,14 +24,14 @@ const JEE = () => {
       {/* Hero Title */}
       <div className="text-center mb-10 z-10 animate-fade-in-up">
         <h1 className="text-4xl md:text-5xl font-extrabold text-base-content drop-shadow-md tracking-tight">
-          My <span className="text-primary relative inline-block">
+          {domain} <span className="text-primary relative inline-block">
              Space
              {/* Glowing underline */}
              <div className="absolute -bottom-2 left-0 w-full h-2 bg-primary/30 blur-sm rounded-full"></div>
           </span>
         </h1>
         <p className="mt-4 text-lg text-base-content/70 max-w-2xl mx-auto">
-          Your personalized hub for top lectures, verified educators, and interactive practice questions.
+          Your personalized hub for top lectures, verified educators, and interactive practice questions tailored for {domain}.
         </p>
       </div>
 
@@ -61,4 +71,4 @@ const JEE = () => {
   )
 }
 
-export default JEE
+export default Space

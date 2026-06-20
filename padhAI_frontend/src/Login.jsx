@@ -33,7 +33,10 @@ const Login = () => {
       }
 
       localStorage.setItem("token", data.token);
-      navigate("/jee");
+      if (data.user && data.user.goal) {
+        localStorage.setItem("userDomain", data.user.goal);
+      }
+      navigate("/space");
 
     } catch (error) {
       console.error(error);

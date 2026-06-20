@@ -1,61 +1,112 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-const lecturesData = [
-  {
-    title: "Engineering Mathematics",
-    author: "Gajendra Purohit",
-    link: "https://www.youtube.com/embed/videoseries?si=cq-Bz3qVFfMTKnUP&list=PLU6SqdYcYsfLPxjd-k-MaoG7qgRQ-2fKc",
-    color: "from-blue-500/20 to-blue-600/20"
-  },
-  {
-    title: "Differential Calculus",
-    author: "Pradeep Giri",
-    link: "https://www.youtube.com/embed/videoseries?si=C2C0OmyRyk5fltGr&list=PLT3bOBUU3L9iw3yQWge_IjhXZlDgRGwyq",
-    color: "from-purple-500/20 to-purple-600/20"
-  },
-  {
-    title: "JavaScript Mastery",
-    author: "Chai aur Code",
-    link: "https://www.youtube.com/embed/videoseries?si=zDbwK9tsVSusdMM-&list=PLu71SKxNbfoBuX3f4EOACle2y-tRC5Q37",
-    color: "from-yellow-500/20 to-yellow-600/20"
-  },
-  {
-    title: "Placement DSA Course",
-    author: "Love Babbar",
-    link: "https://www.youtube.com/embed/videoseries?si=IJZrOddVblCMfcxQ&list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA",
-    color: "from-orange-500/20 to-orange-600/20"
-  },
-  {
-    title: "Data Structures & Algo",
-    author: "Apna College",
-    link: "https://www.youtube.com/embed/videoseries?si=zb2QLGtDfd69LESa&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt",
-    color: "from-green-500/20 to-green-600/20"
-  },
-  {
-    title: "DBMS Course",
-    author: "Gate Smashers",
-    link: "https://www.youtube.com/embed/videoseries?si=-848xsEsAzegzKeh&list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y",
-    color: "from-teal-500/20 to-teal-600/20"
-  },
-  {
-    title: "A2Z DSA Sheet",
-    author: "Striver",
-    link: "https://www.youtube.com/embed/videoseries?si=RnbARiQ1vuERrs5Z&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz",
-    color: "from-red-500/20 to-red-600/20"
-  },
-  {
-    title: "Microprocessors",
-    author: "Bharat Acharya",
-    link: "https://www.youtube.com/embed/videoseries?si=Zu6u2FOEnL3pZD84&list=PLfzBO7vcQZ1IMDUDXph5wB9csF-yYD4GC",
-    color: "from-indigo-500/20 to-indigo-600/20"
-  }
-];
+const domainLectures = {
+  ENGINEERING: [
+    {
+      title: "Engineering Mathematics",
+      author: "Gajendra Purohit",
+      link: "https://www.youtube.com/embed/videoseries?si=cq-Bz3qVFfMTKnUP&list=PLU6SqdYcYsfLPxjd-k-MaoG7qgRQ-2fKc",
+      color: "from-blue-500/20 to-blue-600/20"
+    },
+    {
+      title: "Differential Calculus",
+      author: "Pradeep Giri",
+      link: "https://www.youtube.com/embed/videoseries?si=C2C0OmyRyk5fltGr&list=PLT3bOBUU3L9iw3yQWge_IjhXZlDgRGwyq",
+      color: "from-purple-500/20 to-purple-600/20"
+    },
+    {
+      title: "JavaScript Mastery",
+      author: "Chai aur Code",
+      link: "https://www.youtube.com/embed/videoseries?si=zDbwK9tsVSusdMM-&list=PLu71SKxNbfoBuX3f4EOACle2y-tRC5Q37",
+      color: "from-yellow-500/20 to-yellow-600/20"
+    },
+    {
+      title: "Placement DSA Course",
+      author: "Love Babbar",
+      link: "https://www.youtube.com/embed/videoseries?si=IJZrOddVblCMfcxQ&list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA",
+      color: "from-orange-500/20 to-orange-600/20"
+    },
+    {
+      title: "Data Structures & Algo",
+      author: "Apna College",
+      link: "https://www.youtube.com/embed/videoseries?si=zb2QLGtDfd69LESa&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt",
+      color: "from-green-500/20 to-green-600/20"
+    },
+    {
+      title: "DBMS Course",
+      author: "Gate Smashers",
+      link: "https://www.youtube.com/embed/videoseries?si=-848xsEsAzegzKeh&list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y",
+      color: "from-teal-500/20 to-teal-600/20"
+    }
+  ],
+  JEE: [
+    {
+      title: "JEE Physics 11th & 12th",
+      author: "Physics Wallah",
+      link: "https://www.youtube.com/embed/videoseries?list=PLCtUyOrCJbxx_AQfr0QK38kBFE3GVWXXu",
+      color: "from-blue-500/20 to-blue-600/20"
+    },
+    {
+      title: "JEE Chemistry Complete",
+      author: "Pankaj Sir Chemistry",
+      link: "https://www.youtube.com/embed/videoseries?list=PLGhz9ljM7uOIwm8DW5tcCFnbzO6f79OdQ",
+      color: "from-orange-500/20 to-orange-600/20"
+    },
+    {
+      title: "JEE Mathematics Basics",
+      author: "Neha Agrawal Mathematically Inclined",
+      link: "https://www.youtube.com/embed/videoseries?list=PLxyGaR3hEy3jdiBTjrVTLKf_SU-0pammW",
+      color: "from-green-500/20 to-green-600/20"
+    },
+    {
+      title: "Physics Mechanics",
+      author: "Eduniti",
+      link: "https://www.youtube.com/embed/videoseries?list=PLxyGaR3hEy3isOMa8qRwN4KXwDfx3YLT_",
+      color: "from-purple-500/20 to-purple-600/20"
+    }
+  ],
+  NEET: [
+    {
+      title: "NEET Biology Masterclass",
+      author: "Garima Goel Biology",
+      link: "https://www.youtube.com/embed/videoseries?list=PLJz-qWiTZc9Z867hD_lahRUSaH0HPN3Bx",
+      color: "from-green-500/20 to-green-600/20"
+    },
+    {
+      title: "NEET Chemistry Fundamentals",
+      author: "Seep Pahuja",
+      link: "https://www.youtube.com/embed/videoseries?list=PL01KQqWdw6KoMZa_4zbTdUGdWTku-CZ6S",
+      color: "from-teal-500/20 to-teal-600/20"
+    },
+    {
+      title: "NEET Physics Crash Course",
+      author: "Gaurav Gupta",
+      link: "https://www.youtube.com/embed/videoseries?list=PLJyab0VQDBGWVYHPLjAHjw9y1YB9Gf4bf",
+      color: "from-red-500/20 to-red-600/20"
+    },
+    {
+      title: "Physics Mechanics",
+      author: "Eduniti",
+      link: "https://www.youtube.com/embed/videoseries?list=PLxyGaR3hEy3isOMa8qRwN4KXwDfx3YLT_",
+      color: "from-yellow-500/20 to-yellow-600/20"
+    }
+  ]
+};
 
 const Lectures = () => {
+  const [lectures, setLectures] = useState(domainLectures.ENGINEERING); // Default
+
+  useEffect(() => {
+    const userDomain = localStorage.getItem("userDomain");
+    if (userDomain && domainLectures[userDomain.toUpperCase()]) {
+      setLectures(domainLectures[userDomain.toUpperCase()]);
+    }
+  }, []);
+
   return (
     <div className="w-full animate-fade-in-up animation-delay-400">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 pb-12">
-        {lecturesData.map((lecture, index) => (
+        {lectures.map((lecture, index) => (
           <div 
             key={index} 
             className="card bg-base-100/50 backdrop-blur-xl border border-base-300 shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(16,97,45,0.15)] hover:-translate-y-2 hover:border-primary/40 transition-all duration-300 overflow-hidden group relative"

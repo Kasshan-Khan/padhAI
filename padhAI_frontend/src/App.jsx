@@ -7,7 +7,7 @@ import Chatbot from './components/Chatbot';
 import Home from './Home';
 import Login from './Login'
 import Signup from './SignUp'
-import JEE from './JEE'
+import Space from './Space'
 import ShortNotes from './ShortNotes'
 import Upload from './Upload'
 import VideoInput from './VideoInput'
@@ -49,7 +49,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
 
         {/* APP FEATURES */}
-        <Route path="/jee" element={<ProtectedRoute><JEE /></ProtectedRoute>}>
+        <Route path="/space" element={<ProtectedRoute><Space /></ProtectedRoute>}>
           <Route index element={<Lectures />} />
           <Route path="lectures" element={< Lectures />} />
           <Route path="teachers" element={<Teachers />} />

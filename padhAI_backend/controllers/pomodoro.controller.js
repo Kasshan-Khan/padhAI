@@ -73,8 +73,11 @@ Create a study schedule for a student preparing for ${userDomain}.
     // 4. Parse JSON
     let plan;
     try {
-        const cleanJson = aiResponseText.replace(/```json/g, '').replace(/```/g, '').trim();
-        plan = JSON.parse(cleanJson);
+        const jsonMatch = aiResponseText.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) {
+            throw new Error("No JSON object found in response");
+        }
+        plan = JSON.parse(jsonMatch[0]);
     } catch (error) {
         console.error("JSON Parse Error:", error);
         console.error("Raw AI Response:", aiResponseText);

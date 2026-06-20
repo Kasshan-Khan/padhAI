@@ -1,70 +1,153 @@
 import React, { useState, useEffect } from 'react'
 
+const domainSubjects = {
+  ENGINEERING: [
+    { value: "DSA", label: "💻 DSA" },
+    { value: "ENG_MATHS", label: "📐 ENG MATHS" },
+    { value: "WEB_DEV", label: "🌐 WEB DEV" }
+  ],
+  JEE: [
+    { value: "PHYSICS", label: "⚛️ PHYSICS" },
+    { value: "MATHS", label: "📐 MATHS" },
+    { value: "CHEMISTRY", label: "🧪 CHEMISTRY" }
+  ],
+  NEET: [
+    { value: "BIOLOGY", label: "🧬 BIOLOGY" },
+    { value: "PHYSICS", label: "⚛️ PHYSICS" },
+    { value: "CHEMISTRY", label: "🧪 CHEMISTRY" }
+  ]
+};
+
+const mockQuestionsData = {
+  PHYSICS: [
+    {
+      id: 1,
+      question: "A particle is moving in a circle of radius R with constant speed v. The work done by the centripetal force in one complete revolution is:",
+      options: ["2πRv", "mv²/R", "0", "mv²"]
+    },
+    {
+      id: 2,
+      question: "Which of the following is not a vector quantity?",
+      options: ["Displacement", "Velocity", "Force", "Speed"]
+    },
+    {
+      id: 3,
+      question: "The dimension of Planck's constant is same as that of:",
+      options: ["Angular Momentum", "Linear Momentum", "Work", "Energy"]
+    }
+  ],
+  MATHS: [
+    {
+      id: 1,
+      question: "The value of lim(x->0) (sin x)/x is:",
+      options: ["0", "1", "infinity", "undefined"]
+    },
+    {
+      id: 2,
+      question: "The derivative of sin(x) is:",
+      options: ["cos(x)", "-cos(x)", "tan(x)", "sec(x)"]
+    },
+    {
+      id: 3,
+      question: "Integration of 1/x dx is:",
+      options: ["log x", "e^x", "x^2/2", "1/x^2"]
+    }
+  ],
+  CHEMISTRY: [
+    {
+      id: 1,
+      question: "Which of the following is an intensive property?",
+      options: ["Volume", "Mass", "Density", "Energy"]
+    },
+    {
+      id: 2,
+      question: "The oxidation number of Oxygen in H2O2 is:",
+      options: ["-2", "-1", "+1", "+2"]
+    },
+    {
+      id: 3,
+      question: "Hybridization of Carbon in CH4 is:",
+      options: ["sp", "sp2", "sp3", "dsp2"]
+    }
+  ],
+  BIOLOGY: [
+    {
+      id: 1,
+      question: "The powerhouse of the cell is:",
+      options: ["Nucleus", "Ribosome", "Mitochondria", "Golgi Body"]
+    },
+    {
+      id: 2,
+      question: "Which blood group is known as the universal donor?",
+      options: ["A+", "AB+", "O+", "O-"]
+    },
+    {
+      id: 3,
+      question: "DNA replication takes place during which phase of the cell cycle?",
+      options: ["G1 Phase", "S Phase", "G2 Phase", "M Phase"]
+    }
+  ],
+  DSA: [
+    {
+      id: 1,
+      question: "Time complexity of binary search is:",
+      options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"]
+    },
+    {
+      id: 2,
+      question: "Which data structure uses LIFO principle?",
+      options: ["Queue", "Stack", "Linked List", "Tree"]
+    },
+    {
+      id: 3,
+      question: "Worst case time complexity of Quick Sort is:",
+      options: ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"]
+    }
+  ],
+  ENG_MATHS: [
+    {
+      id: 1,
+      question: "The Laplace transform of e^(at) is:",
+      options: ["1/(s-a)", "1/(s+a)", "s/(s^2+a^2)", "a/(s^2+a^2)"]
+    },
+    {
+      id: 2,
+      question: "Eigenvalues of a real symmetric matrix are always:",
+      options: ["Complex", "Real", "Zero", "Purely Imaginary"]
+    }
+  ],
+  WEB_DEV: [
+    {
+      id: 1,
+      question: "Which hook is used to perform side effects in functional components?",
+      options: ["useState", "useEffect", "useMemo", "useContext"]
+    },
+    {
+      id: 2,
+      question: "What does CSS stand for?",
+      options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"]
+    }
+  ]
+};
+
 const Questions = () => {
   const [questions, setQuestions] = useState([]);
-  const [subject, setSubject] = useState("PHYSICS");
+  const [subject, setSubject] = useState("");
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [availableSubjects, setAvailableSubjects] = useState(domainSubjects.ENGINEERING);
 
   useEffect(() => {
-    // Mock questions for demonstration
-    let mockQuestions = [];
-    if (subject === "PHYSICS") {
-      mockQuestions = [
-        {
-          id: 1,
-          question: "A particle is moving in a circle of radius R with constant speed v. The work done by the centripetal force in one complete revolution is:",
-          options: ["2πRv", "mv²/R", "0", "mv²"]
-        },
-        {
-          id: 2,
-          question: "Which of the following is not a vector quantity?",
-          options: ["Displacement", "Velocity", "Force", "Speed"]
-        },
-        {
-          id: 3,
-          question: "The dimension of Planck's constant is same as that of:",
-          options: ["Angular Momentum", "Linear Momentum", "Work", "Energy"]
-        }
-      ];
-    } else if (subject === "MATHS") {
-      mockQuestions = [
-        {
-          id: 1,
-          question: "The value of lim(x->0) (sin x)/x is:",
-          options: ["0", "1", "infinity", "undefined"]
-        },
-        {
-          id: 2,
-          question: "The derivative of sin(x) is:",
-          options: ["cos(x)", "-cos(x)", "tan(x)", "sec(x)"]
-        },
-        {
-          id: 3,
-          question: "Integration of 1/x dx is:",
-          options: ["log x", "e^x", "x^2/2", "1/x^2"]
-        }
-      ];
-    } else if (subject === "DSA") {
-      mockQuestions = [
-        {
-          id: 1,
-          question: "Time complexity of binary search is:",
-          options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"]
-        },
-        {
-          id: 2,
-          question: "Which data structure uses LIFO principle?",
-          options: ["Queue", "Stack", "Linked List", "Tree"]
-        },
-        {
-          id: 3,
-          question: "Worst case time complexity of Quick Sort is:",
-          options: ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"]
-        }
-      ];
+    const userDomain = localStorage.getItem("userDomain")?.toUpperCase() || "ENGINEERING";
+    const subjects = domainSubjects[userDomain] || domainSubjects.ENGINEERING;
+    setAvailableSubjects(subjects);
+    setSubject(subjects[0].value); // Set default subject based on domain
+  }, []);
+
+  useEffect(() => {
+    if (subject) {
+      setQuestions(mockQuestionsData[subject] || []);
+      setSelectedOptions({});
     }
-    setQuestions(mockQuestions);
-    setSelectedOptions({});
   }, [subject]);
 
   const handleOptionSelect = (questionId, optionIndex) => {
@@ -85,9 +168,9 @@ const Questions = () => {
             value={subject} 
             onChange={(e) => setSubject(e.target.value)}
           >
-            <option value="MATHS">📐 MATHS</option>
-            <option value="PHYSICS">⚛️ PHYSICS</option>
-            <option value="DSA">💻 DSA</option>
+            {availableSubjects.map((sub) => (
+               <option key={sub.value} value={sub.value}>{sub.label}</option>
+            ))}
           </select>
         </div>
       </div>

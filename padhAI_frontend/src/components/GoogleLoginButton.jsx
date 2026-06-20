@@ -36,10 +36,12 @@ const GoogleLoginButton = () => {
 
             if (res.ok) {
                 localStorage.setItem("token", data.token);
-                // alert("Login Success! Redirecting...");
+                if (data.user && data.user.goal) {
+                    localStorage.setItem("userDomain", data.user.goal);
+                }
 
                 if (data.user.goal) {
-                    navigate("/jee");
+                    navigate("/space");
                 } else {
                     navigate("/domain-selection");
                 }

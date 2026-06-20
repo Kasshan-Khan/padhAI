@@ -44,7 +44,7 @@ function Navbar() {
         <>
           <li><Link to="/short-notes">NotesMaker</Link></li>
           <li><Link to="/todo">My Tasks</Link></li>
-          <li><Link to="/jee">My Space</Link></li>
+          <li><Link to="/space">My Space</Link></li>
           <li><Link to="/personalized-learning">Learning</Link></li>
         </>
       )}
