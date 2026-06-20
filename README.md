@@ -48,6 +48,8 @@ MONGO_URI=your_mongodb_connection_string
 ACCESS_TOKEN_SECRET=your_super_secret_jwt_key
 GOOGLE_CLIENT_ID=your_google_oauth_client_id
 NODE_ENV=development
+PYTHON_SERVER_URL=http://localhost:8000 # (Change to live Python URL in production)
+FRONTEND_URL=http://localhost:5173 # (Change to live Vercel URL in production)
 ```
 Start the server:
 ```bash
@@ -58,6 +60,13 @@ npm start
 ```bash
 cd padhAI_model
 pip install -r requirements.txt
+```
+Create a `.env` file in `padhAI_model`:
+```env
+GOOGLE_API_KEY=your_google_gemini_api_key
+```
+Start the local server:
+```bash
 python server.py
 ```
 
@@ -68,7 +77,8 @@ npm install
 ```
 Create a `.env` file in `padhAI_frontend`:
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:5000 # (Change to live Node backend URL in production)
+VITE_GOOGLE_CLIENT_ID=your_google_oauth_client_id
 ```
 Start the development server:
 ```bash
@@ -81,9 +91,24 @@ Your application should now be running securely at `http://localhost:5173`!
 
 ## 🌍 Production Deployment
 
-For the best performance, we recommend a **Decoupled Architecture**:
-1.  **Frontend (Vercel):** Deploy the `padhAI_frontend` folder to Vercel for blazing-fast Edge CDN delivery.
-2.  **Backend (Render/Heroku):** Deploy the `padhAI_backend` folder as a Node.js Web Service. Set `FRONTEND_URL` in your backend environment variables to your live Vercel URL to secure CORS.
+For the best performance and scalability, we strongly recommend a **Decoupled Architecture**:
+
+### 1. Python AI Server (Render)
+*   **Root Directory:** `padhAI_model`
+*   **Build Command:** `pip install -r requirements.txt`
+*   **Start Command:** `gunicorn server:app` (Crucial for handling concurrent production traffic!)
+*   **Env Variables:** `GOOGLE_API_KEY`
+
+### 2. Node.js Backend (Render)
+*   **Root Directory:** `padhAI_backend`
+*   **Build Command:** `npm install`
+*   **Start Command:** `node app.js`
+*   **Env Variables:** Copy everything from your local `.env`, but set `NODE_ENV=production`, `PYTHON_SERVER_URL` to your live Python Render URL, and `FRONTEND_URL` to your Vercel URL (for CORS security).
+
+### 3. React Frontend (Vercel)
+*   **Root Directory:** `padhAI_frontend`
+*   **Framework Preset:** Vite
+*   **Env Variables:** Set `VITE_API_URL` to your live Node.js Render URL, and add your `VITE_GOOGLE_CLIENT_ID`.
 
 ---
 *Built with ❤️ for students.*
