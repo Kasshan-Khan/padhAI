@@ -8,11 +8,13 @@ Featuring a hyper-complex, glassmorphic UI locked into a stunning OLED Dark Mode
 
 ## ✨ Core Features
 
+*   **🎙️ Iron Man Voice AI:** Banku isn't just a text bot. Talk directly to him using your microphone via the native Web Speech API, and he will read his AI-generated responses out loud!
+*   **🌊 Liquid UI (Framer Motion):** The interface doesn't just load; it breathes. Enjoy physics-based spring animations, fluid layout morphing, and cascading staggers that make the app feel incredibly premium.
 *   **📝 AI Notes Maker:** Paste any YouTube lecture URL, and our AI will transcribe, analyze, and generate highly structured, beautifully formatted markdown notes in seconds.
 *   **🤖 Banku AI Tutor:** Your 24/7 AI study companion. Stuck on a concept? Ask Banku for instant, friendly, and context-aware explanations.
 *   **⏱️ Smart Study Planner:** Stop procrastinating. Utilize the built-in **Pomodoro Planner** and the **AI Priority Engine (Eisenhower Matrix)** to effortlessly organize your day.
 *   **🎓 Domain Personalization:** Whether you are studying for JEE, NEET, or Engineering, padhAI curates your workspace, offering interactive video lectures, cinematic teacher profiles, and dynamic quizzes tailored to your path.
-*   **🎨 Hyper-Complex UI:** Experience a stunning frontend powered by TailwindCSS and DaisyUI, featuring deep gradients, interactive floating navigations, and 3D hover effects.
+*   **🎨 Hyper-Complex Aesthetics:** Experience a stunning frontend powered by TailwindCSS and DaisyUI, featuring deep gradients, interactive floating navigations, and 3D hover effects.
 
 ---
 
