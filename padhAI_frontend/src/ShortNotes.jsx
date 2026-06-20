@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ShortNotes = () => {
   const [link, setLink] = useState("");
@@ -58,17 +59,28 @@ const ShortNotes = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 opacity-40 pointer-events-none"></div>
 
       {/* Massive Gradient Text Header instead of Image */}
-      <div className="mb-12 mt-6 text-center z-10 animate-fade-in-up">
+      <motion.div 
+        className="mb-12 mt-6 text-center z-10"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, type: "spring" }}
+      >
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary animate-pulse drop-shadow-[0_0_25px_rgba(16,97,45,0.6)]">
           Notes Maker AI
         </h1>
         <p className="text-xl md:text-2xl text-base-content/80 font-medium tracking-wide">
           Turn any lecture into <span className="text-primary font-bold">structured intelligence.</span>
         </p>
-      </div>
+      </motion.div>
 
       {/* Input Card */}
-      <div className={`w-full transition-all duration-700 ease-in-out z-10 ${summary ? 'opacity-90 scale-95 max-w-3xl' : 'opacity-100 scale-100 max-w-4xl'}`}>
+      <motion.div 
+        layout
+        className={`w-full z-10 ${summary ? 'max-w-3xl' : 'max-w-4xl'}`}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: summary ? 0.9 : 1, scale: summary ? 0.95 : 1 }}
+        transition={{ duration: 0.6, type: "spring" }}
+      >
         <div className="card bg-base-100/50 backdrop-blur-2xl shadow-2xl border border-base-300 relative overflow-hidden">
           {/* Glowing animated border */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/30 via-accent/30 to-secondary/30 blur-xl animate-pulse -z-10"></div>
@@ -110,11 +122,18 @@ const ShortNotes = () => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Loading Skeleton */}
+      <AnimatePresence>
       {loading && (
-        <div className="w-full max-w-4xl mt-10 z-10 animate-fade-in-up">
+        <motion.div 
+          className="w-full max-w-4xl mt-10 z-10"
+          initial={{ opacity: 0, y: 20, height: 0 }}
+          animate={{ opacity: 1, y: 0, height: "auto" }}
+          exit={{ opacity: 0, y: -20, height: 0 }}
+          transition={{ duration: 0.4 }}
+        >
            <div className="card bg-base-100/40 backdrop-blur-md shadow-2xl border border-base-300 p-8">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-full bg-primary/20 animate-pulse flex items-center justify-center">
@@ -134,12 +153,20 @@ const ShortNotes = () => {
                  <div className="h-4 bg-base-300/50 rounded-full animate-pulse w-4/5"></div>
               </div>
            </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {/* Summary Output */}
+      <AnimatePresence>
       {summary && !loading && (
-        <div className="w-full max-w-5xl mt-12 z-10 animate-fade-in-up">
+        <motion.div 
+          className="w-full max-w-5xl mt-12 z-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+        >
           <div className="card bg-base-100/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-primary/20">
             <div className="card-body p-8 lg:p-12">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-base-300 pb-6 mb-6 gap-4">
@@ -162,8 +189,9 @@ const ShortNotes = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
     </div>
   );
