@@ -55,7 +55,7 @@ const GoogleLoginButton = () => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginLeft: '200px' }}>
+        <div className="w-full flex justify-center mt-6">
             <GoogleLogin
                 onSuccess={handleSuccess}
                 onError={() => console.log("Google Login Failed")}

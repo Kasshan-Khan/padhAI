@@ -56,12 +56,12 @@ function App() {
           <Route path="questions" element={<Questions />} />
         </Route>
 
-        <Route path="/short-notes" element={<ShortNotes />} />
-        <Route path="/upload" element={<Upload />} />
-        <Route path="/video-input" element={<VideoInput />} />
-        <Route path="/loading" element={<Loading />} />
-        <Route path="/download" element={<DownloadNotes />} />
-        <Route path="/todo" element={<ToDoList />} />
+        <Route path="/short-notes" element={<ProtectedRoute><ShortNotes /></ProtectedRoute>} />
+        <Route path="/upload" element={<ProtectedRoute><Upload /></ProtectedRoute>} />
+        <Route path="/video-input" element={<ProtectedRoute><VideoInput /></ProtectedRoute>} />
+        <Route path="/loading" element={<ProtectedRoute><Loading /></ProtectedRoute>} />
+        <Route path="/download" element={<ProtectedRoute><DownloadNotes /></ProtectedRoute>} />
+        <Route path="/todo" element={<ProtectedRoute><ToDoList /></ProtectedRoute>} />
         <Route path="/domain-selection" element={<ProtectedRoute><DomainSelection /></ProtectedRoute>} />
         <Route path="/eisenhower" element={<ProtectedRoute><EisenhowerMatrix /></ProtectedRoute>} />
         <Route path="/pomodoro" element={<ProtectedRoute><PomodoroPlanner /></ProtectedRoute>} />
