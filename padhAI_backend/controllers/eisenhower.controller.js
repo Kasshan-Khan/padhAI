@@ -56,7 +56,8 @@ Analyze each task against the reflections.
     // 3. Call Python AI Service
     let aiResponseText;
     try {
-        const response = await axios.post(process.env.PYTHON_SERVER_URL || `http://localhost:8000/api/generate`, {
+        const pythonUrl = process.env.PYTHON_SERVER_URL || 'http://localhost:8000';
+        const response = await axios.post(`${pythonUrl}/api/generate`, {
             prompt: prompt
         });
 
@@ -73,9 +74,11 @@ Analyze each task against the reflections.
     // 4. Parse JSON
     let matrix;
     try {
-        // Strip markdown code blocks if present
-        const cleanJson = aiResponseText.replace(/```json/g, '').replace(/```/g, '').trim();
-        matrix = JSON.parse(cleanJson);
+        const jsonMatch = aiResponseText.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) {
+            throw new Error("No JSON object found in response");
+        }
+        matrix = JSON.parse(jsonMatch[0]);
     } catch (error) {
         console.error("JSON Parse Error:", error);
         console.error("Raw AI Response:", aiResponseText);

@@ -56,7 +56,8 @@ Create a study schedule for a student preparing for ${userDomain}.
     // 3. Call AI Service
     let aiResponseText;
     try {
-        const response = await axios.post(process.env.PYTHON_SERVER_URL || 'http://localhost:8000/api/generate', {
+        const pythonUrl = process.env.PYTHON_SERVER_URL || 'http://localhost:8000';
+        const response = await axios.post(`${pythonUrl}/api/generate`, {
             prompt: prompt
         });
 
