@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import './App.css'
 import Navbar from './components/navbar'
+import Chatbot from './components/Chatbot';
 
 import Home from './Home';
 import Login from './Login'
@@ -28,45 +29,7 @@ import PersonalizedLearning from './PersonalizedLearning';
 
 
 
-function ChatbaseWidget() {
-  useEffect(() => {
-    // Prevent loading the script multiple times
-    if (window.chatbase) return;
 
-    (function () {
-      if (
-        !window.chatbase ||
-        window.chatbase("getState") !== "initialized"
-      ) {
-        window.chatbase = (...args) => {
-          if (!window.chatbase.q) {
-            window.chatbase.q = [];
-          }
-          window.chatbase.q.push(arguments);
-        };
-
-        window.chatbase = new Proxy(window.chatbase, {
-          get(target, prop) {
-            if (prop === "q") {
-              return target.q;
-            }
-            return (...args) => target(prop, ...args);
-          },
-        });
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://www.chatbase.co/embed.min.js";
-      script.id = "GVHrx645hCATwg4qksPA4";
-      script.setAttribute("domain", "www.chatbase.co");
-      script.async = true;
-
-      document.body.appendChild(script);
-    })();
-  }, []);
-
-  return null; // widget mounts itself
-}
 
 
 
@@ -104,7 +67,7 @@ function App() {
         <Route path="/pomodoro" element={<ProtectedRoute><PomodoroPlanner /></ProtectedRoute>} />
         <Route path="/personalized-learning" element={<ProtectedRoute><PersonalizedLearning /></ProtectedRoute>} />
       </Routes>
-      <ChatbaseWidget />
+      <Chatbot />
     </BrowserRouter>
   )
 }

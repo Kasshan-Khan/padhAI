@@ -19,6 +19,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/transcript", transcriptRouter);
 app.use("/api/eisenhower", require("./routes/eisenhowerRouter"));
 app.use("/api/pomodoro", require("./routes/pomodoroRouter"));
+app.use("/api/chat", require("./routes/chatRouter"));
 
 // Test route
 app.get("/", (req, res) => {
