@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(frontendPath));
 
   // Catch-all route to serve React's index.html for client-side routing
-  app.get('*', (req, res) => {
+  app.get('(.*)', (req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
   });
 }
