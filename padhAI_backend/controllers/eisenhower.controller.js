@@ -56,7 +56,7 @@ Analyze each task against the reflections.
     // 3. Call Python AI Service
     let aiResponseText;
     try {
-        const response = await axios.post('http://localhost:8000/api/generate', {
+        const response = await axios.post(process.env.PYTHON_SERVER_URL || `http://localhost:8000/api/generate`, {
             prompt: prompt
         });
 
