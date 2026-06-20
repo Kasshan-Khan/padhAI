@@ -56,17 +56,6 @@ app.get("/api/health", (req, res) => {
   res.json({ message: "Backend running securely 🚀" });
 });
 
-// --- PRODUCTION DEPLOYMENT LOGIC ---
-// Serve frontend static files if in production
-if (process.env.NODE_ENV === 'production') {
-  const frontendPath = path.join(__dirname, '../padhAI_frontend/dist');
-  app.use(express.static(frontendPath));
-
-  // Catch-all route to serve React's index.html for client-side routing
-  app.get('(.*)', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-  });
-}
 
 // Global Error Handler
 app.use((err, req, res, next) => {

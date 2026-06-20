@@ -26,7 +26,8 @@ const handleChat = async (req, res) => {
         prompt += "AI:";
 
         // Call the running python-model server's generate endpoint
-        const response = await axios.post("http://localhost:8000/api/generate", {
+        const pythonUrl = process.env.PYTHON_SERVER_URL || 'http://localhost:8000';
+        const response = await axios.post(`${pythonUrl}/api/generate`, {
             prompt: prompt
         });
 

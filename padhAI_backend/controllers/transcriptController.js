@@ -9,7 +9,8 @@ const YoutubeTranscript = async (req, res) => {
         }
 
         // Call Python model server
-        const response = await axios.post('http://localhost:8000/api/transcript/summary', {
+        const pythonUrl = process.env.PYTHON_SERVER_URL || 'http://localhost:8000';
+        const response = await axios.post(`${pythonUrl}/api/transcript/summary`, {
             youtube_url
         });
 
