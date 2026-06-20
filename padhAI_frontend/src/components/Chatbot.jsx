@@ -12,8 +12,71 @@ const Chatbot = () => {
     ]);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
+    const [isListening, setIsListening] = useState(false);
+    const [voiceEnabled, setVoiceEnabled] = useState(true);
 
     const messagesEndRef = useRef(null);
+
+    // Setup Speech Recognition
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+    if (recognition) {
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = () => setIsListening(true);
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            setInput(transcript);
+        };
+        recognition.onerror = (event) => {
+            console.error("Speech recognition error:", event.error);
+            setIsListening(false);
+        };
+        recognition.onend = () => {
+            setIsListening(false);
+        };
+    }
+
+    const toggleListening = () => {
+        if (!recognition) {
+            alert("Your browser does not support voice input.");
+            return;
+        }
+        if (isListening) {
+            recognition.stop();
+        } else {
+            recognition.start();
+        }
+    };
+
+    // Text to Speech Function
+    const speakText = (text) => {
+        if (!voiceEnabled || !window.speechSynthesis) return;
+        
+        window.speechSynthesis.cancel();
+        
+        // Clean up markdown before speaking
+        const cleanText = text.replace(/[*#]/g, '').replace(/```[\s\S]*?```/g, '');
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.includes('en-US') || v.lang.includes('en-GB'));
+        if (englishVoice) utterance.voice = englishVoice;
+        
+        utterance.rate = 1.05;
+        utterance.pitch = 1.05;
+        window.speechSynthesis.speak(utterance);
+    };
+
+    // Stop speaking when chatbot is closed
+    useEffect(() => {
+        if (!isOpen && window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
+    }, [isOpen]);
 
     const suggestions = [
         "Give me study tips",
@@ -64,6 +127,7 @@ const Chatbot = () => {
 
             if (res.ok && data.success) {
                 setMessages(prev => [...prev, { sender: "ai", text: data.reply }]);
+                speakText(data.reply);
             } else {
                 setMessages(prev => [...prev, { 
                     sender: "ai", 
@@ -117,7 +181,20 @@ const Chatbot = () => {
                                 <span className="status-dot"></span> Online
                             </div>
                         </div>
-                        <button className="chatbot-close-btn" onClick={() => setIsOpen(false)}>&times;</button>
+                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                            <button 
+                                className="chatbot-voice-toggle" 
+                                onClick={() => {
+                                    setVoiceEnabled(!voiceEnabled);
+                                    if (voiceEnabled) window.speechSynthesis.cancel();
+                                }}
+                                title={voiceEnabled ? "Mute Banku" : "Unmute Banku"}
+                                style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: '1.2rem', padding: '0 5px' }}
+                            >
+                                {voiceEnabled ? '🔊' : '🔇'}
+                            </button>
+                            <button className="chatbot-close-btn" onClick={() => setIsOpen(false)}>&times;</button>
+                        </div>
                     </div>
 
                     <div className="chatbot-messages">
@@ -164,6 +241,16 @@ const Chatbot = () => {
                             }}
                             disabled={loading}
                         />
+                        <button 
+                            className={`chatbot-mic-btn ${isListening ? 'listening' : ''}`}
+                            onClick={toggleListening}
+                            disabled={loading}
+                            title="Speak"
+                        >
+                            <svg viewBox="0 0 24 24" fill={isListening ? "#ff4444" : "currentColor"}>
+                                <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                            </svg>
+                        </button>
                         <button 
                             className="chatbot-send-btn" 
                             onClick={() => handleSend()}
